@@ -24,6 +24,7 @@ class ExecuteQuery extends Component {
   executeSelect = statement => {
     let api = new GetRecordsAPI(statement, 3000);
     this.props.APITransport(api);
+    this.setState({ isProgress: false })
     // CassandraAPICalls.fireGetQuery(statement)
     // .then(
     //     resp => {

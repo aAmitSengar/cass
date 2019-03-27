@@ -18,6 +18,13 @@ import {
 } from './../actions/EditDialogActionCreator';
 
 class EditDialog extends Component {
+
+  constructor(props){
+    super(props);
+    this.state={
+
+    }
+  }
   handleClose = () => {
     this.props.flipEditDailog({});
   };

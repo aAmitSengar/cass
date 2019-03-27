@@ -6,7 +6,7 @@ export default function resultDataReducer(state = {}, action = {}) {
       debugger;
       const newState = {
         ...state,
-        result: [...action.result]
+        result: [...action.payload]
       };
       return newState;
     }

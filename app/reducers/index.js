@@ -12,7 +12,7 @@ import notificationReducer from './reducer-notification';
 import insertDataReducer from './reducer-insertData';
 import editDialogReducer from './reducer-editDialog';
 
-const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const storeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // const allReducers = combineReducers(
 //   {
