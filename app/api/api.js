@@ -18,7 +18,9 @@ export default class API {
   }
 
   toString() {
-    return `( code: ${this.code} message: ${this.message} domain: ${this.domain} method: ${this.method} timeout: ${this.timeout} auth: ${this.auth}`;
+    return `( code: ${this.code} message: ${this.message} domain: ${
+      this.domain
+    } method: ${this.method} timeout: ${this.timeout} auth: ${this.auth}`;
   }
 
   apiEndPoint() {

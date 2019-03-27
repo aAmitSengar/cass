@@ -1,52 +1,53 @@
-const initialState = {
-  keyspaces: [], 
-  columnFamilies: [], 
-  columnDetails: [], 
-  filterBy: [], 
-  operation: ["=","!="],
-  condition: "",
-  result: "",
-}
+// const initialState = {
+//   keyspaces: [],
+//   columnFamilies: [],
+//   columnDetails: [],
+//   filterBy: [],
+//   operation: ["=","!="],
+//   condition: "",
+//   result: "",
+// }
+import C from './../api/constants';
 
-export default function formDataReducer(state = initialState, action = {}){
+export default function formDataReducer(state = {}, action = {}) {
   switch (action.type) {
-    case "ADD_KEYSPACES": {
+    case C.ADD_KEYSPACES: {
       const newState = {
         ...state,
         keyspaces: [...action.keyspaces]
-      }
-      return newState
+      };
+      return newState;
     }
-    case "ADD_COLUMN_FAMILIES": {
+    case C.ADD_COLUMN_FAMILIES: {
       const newState = {
         ...state,
         columnFamilies: [...action.columnFamilies]
-      }
-      return newState
+      };
+      return newState;
     }
-    case "ADD_COLUMNS": {
-      let newState = {...state}
+    case C.ADD_COLUMNS: {
+      let newState = { ...state };
       newState = {
         ...state,
         columnDetails: [...action.ColumnDetails],
-        filterBy: [...action.ColumnDetails],
-      }
-      return newState
-    }  
-    case "RESET_STATE": {
-      return initialState
+        filterBy: [...action.ColumnDetails]
+      };
+      return newState;
     }
-    case "KEYSPACE_VALUE_CHANGED": {
+    case C.RESET_STATE: {
+      return state;
+    }
+    case C.KEYSPACE_VALUE_CHANGED: {
       const newState = {
         ...state,
         keyspace: action.keyspace,
-        columnFamilies: initialState.columnFamilies,
-        columnDetails: initialState.columnDetails,
-      }
-      return newState
+        columnFamilies: state.columnFamilies,
+        columnDetails: state.columnDetails
+      };
+      return newState;
     }
 
     default:
-      return state
+      return state;
   }
 }

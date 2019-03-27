@@ -1,7 +1,9 @@
+import C from './../api/constants';
+
 export function setColumns(clmnName, clmnValue) {
-    return {
-        type: "INSERT_COLUMNS",
-        clmnName: clmnName,
-        clmnValue: clmnValue
-    }
+  return {
+    type: C.INSERT_COLUMNS,
+    clmnName: clmnName,
+    clmnValue: clmnValue
+  };
 }

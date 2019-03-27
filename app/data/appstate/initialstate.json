@@ -4,6 +4,62 @@
     "error": false,
     "message": null
   },
-  "getConnResponse": {},
-  "counter": 100
+  "counter": 100,
+  "resultDataReducer": {
+    "result": []
+  },
+  "queryReducer": {
+    "keyspace": "",
+    "columnFamily": "",
+    "columns": [],
+    "filterBy": "",
+    "operation": "",
+    "statement": "",
+    "condition": "",
+    "limit": 100
+  },
+  "router": {
+    "location": {
+      "pathname": "/",
+      "search": "",
+      "hash": ""
+    },
+    "action": "POP"
+  },
+  "connectionsReducer": {
+    "connections": [
+      {
+        "contactPoints": "localhost",
+        "port": 9042,
+        "uid": "",
+        "pwd": "",
+        "keyspace": "system_schema",
+        "name": "localhost"
+      }
+    ],
+    "connectedIndex": -1
+  },
+  "formDataReducer": {
+    "keyspaces": [],
+    "columnFamilies": [],
+    "columnDetails": [],
+    "filterBy": [],
+    "operation": ["=", "!="],
+    "condition": "",
+    "result": ""
+  },
+  "conditionReducer": {
+    "filterByCondtion": [],
+    "count": 1
+  },
+  "notificationReducer": {
+    "isShown": false,
+    "message": "",
+    "nature": "success"
+  },
+  "insertDataReducer": {},
+  "editDialogReducer": {
+    "isOpen": false,
+    "data": {}
+  }
 }

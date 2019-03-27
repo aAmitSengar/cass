@@ -10,13 +10,8 @@
  *
  * @flow
  */
-import {
-  app,
-  BrowserWindow
-} from 'electron';
-import {
-  autoUpdater
-} from 'electron-updater';
+import { app, BrowserWindow } from 'electron';
+import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import server from '../server';
@@ -67,15 +62,14 @@ app.on('window-all-closed', () => {
 
 app.on('ready', async () => {
   server.listen(port, () => {
-    console.log(`Listening on port ${port}`)
+    console.log(`Listening on port ${port}`);
 
     if (
       process.env.NODE_ENV === 'development' ||
       process.env.DEBUG_PROD === 'true'
     ) {
       installExtensions().then(() => {
-        console.log("installExtensions");
-
+        console.log('installExtensions');
       });
     }
 
@@ -111,5 +105,5 @@ app.on('ready', async () => {
     // Remove this if your app does not use auto updates
     // eslint-disable-next-line
     new AppUpdater();
-  })
+  });
 });

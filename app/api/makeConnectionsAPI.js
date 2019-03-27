@@ -5,16 +5,16 @@ import API from './api';
 import C from './constants';
 // import CONFIGS from '../../configs/configs';
 
-export default class GetRecords extends API {
+export default class MakeConnectionsAPI extends API {
   constructor(data, timeout = 2000) {
     super('post', timeout, true);
-    this.type = C.IMPORT_CONNECTIONS;
+    this.type = C.MAKE_CONNECTION;
     this.data = data;
-    this.getConnResponse = {}
+    this.getConnResponse = {};
   }
 
   processResponse(res) {
-    super.processResponse(res)
+    super.processResponse(res);
     if (res) {
       this.getConnResponse = res;
       return true;
@@ -23,7 +23,7 @@ export default class GetRecords extends API {
   }
 
   apiEndPoint() {
-    return `${super.apiEndPoint()}/getRecords`;
+    return `${super.apiEndPoint()}/makeConnection`;
   }
 
   getPayload() {
@@ -35,20 +35,20 @@ export default class GetRecords extends API {
       connection: this.data
       // 'level': this.acknowledge.email,
       // '_id': this.acknowledge.id,
-    }
+    };
   }
 
   getHeaders() {
     return {
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        Authorization: `Bearer ${sessionStorage.getItem('token')}`
       }
-    }
+    };
   }
   getCustomConfigs() {
     return {
       timeout: this.timeout
-    }
+    };
   }
 }

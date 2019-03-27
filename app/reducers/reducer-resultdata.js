@@ -1,20 +1,19 @@
-const initialState = {
-  result: [],
-}
+import C from './../api/constants';
 
-export default function resultDataReducer(state = initialState, action = {}){
+export default function resultDataReducer(state = {}, action = {}) {
   switch (action.type) {
-    case "ADD_RESULT": {
+    case C.SELECT_Q_RESULT: {
+      debugger;
       const newState = {
         ...state,
         result: [...action.result]
-      }
-      return newState
+      };
+      return newState;
     }
-    case "RESET_STATE": {
-      return initialState
+    case C.RESET_STATE: {
+      return state;
     }
     default:
-      return state
+      return state;
   }
 }
