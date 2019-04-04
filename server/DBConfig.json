@@ -1,0 +1,20 @@
+{
+  "localConnection": {
+    "contactPoints": ["localhost"],
+    "keyspace": "system_schema",
+    "localDataCenter": "datacenter1",
+    "port": 9042,
+    "protocolOptions": {
+      "port": 9042
+    }
+  },
+  "AuthConnection": {
+    "contactPoints": ["localhost"],
+    "keyspace": "system_schema",
+    "authProvider": {},
+    "port": 9042,
+    "protocolOptions": {
+      "port": 9042
+    }
+  }
+}

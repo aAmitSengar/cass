@@ -259,6 +259,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
+    "bluebird": "^3.5.4",
     "body-parser": "^1.18.3",
     "cassandra-driver": "^4.0.0",
     "devtron": "^1.4.0",
@@ -280,6 +281,7 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "source-map-support": "^0.5.9",
+    "swagger-ui-express": "^4.0.2",
     "xlsx": "^0.14.1"
   },
   "devEngines": {

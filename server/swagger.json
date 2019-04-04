@@ -1,0 +1,175 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Yet Another Node.js Blogg Application API",
+    "description": "Yet Another Node.js Blogg Application API",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:5000",
+  "basePath": "/api/v1",
+  "tags": [{
+    "name": "Users",
+    "description": "API for users in the system"
+  }],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/makeConnection": {
+      "post": {
+        "tags": [
+          "database"
+        ],
+        "description": "create new db connection",
+        "parameters": [{
+          "name": "connection",
+          "in": "body",
+          "description": "DB connection which we want to connect",
+          "schema": {
+            "$ref": "#/definitions/MakeConnection"
+          }
+        }],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New user is created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "database"
+        ],
+        "summary": "Get all database in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Connection"
+            }
+          }
+        }
+      }
+    },
+    "/users/{userId}": {
+      "parameters": [{
+        "name": "userId",
+        "in": "path",
+        "required": true,
+        "description": "ID of user that we want to find",
+        "type": "string"
+      }],
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get user with given ID",
+        "responses": {
+          "200": {
+            "description": "User is found",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete user with given ID",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "User is deleted",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update user with give ID",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [{
+          "name": "user",
+          "in": "body",
+          "description": "User with new values of properties",
+          "schema": {
+            "$ref": "#/definitions/User"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "User is updated",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Connection": {
+      "required": [
+        "contactPoints",
+        "port"
+      ],
+      "properties": {
+        "contactPoints": {
+          "type": "string",
+          "uniqueItems": true,
+          "default": "localhost"
+        },
+        "port": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "uid": {
+          "type": "string"
+        },
+        "pwd": {
+          "type": "string"
+        },
+        "keyspace": {
+          "type": "string",
+          "default": "system_schema"
+        },
+        "name": {
+          "type": "string",
+          "default": "localhost"
+        }
+      }
+    },
+    "Users": {
+      "type": "array",
+      "$ref": "#/definitions/User"
+    },
+    "MakeConnection": {
+      "type": "object",
+      "properties": {
+        "connection": {
+          "type": "object",
+          "$ref": "#/definitions/Connection"
+        }
+      }
+    }
+  }
+}

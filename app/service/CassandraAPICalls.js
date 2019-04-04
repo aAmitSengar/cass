@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class CassandraAPICalls {
   debugger;
   static fireGetQuery = queryStatement => {
-    return axios('http://localhost:5000/api/getRecords', {
+    return axios('http://localhost:5000/api/v1/getRecords', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -18,7 +18,7 @@ export default class CassandraAPICalls {
   };
 
   static fireQuery = queryStatement => {
-    return axios('http://localhost:5000/api/execute', {
+    return axios('http://localhost:5000/api/v1/execute', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -34,7 +34,7 @@ export default class CassandraAPICalls {
 
   static fireUpdateQuery(queryStatement) {
     console.log(queryStatement);
-    return axios('http://localhost:5000/api/executeUpdate', {
+    return axios('http://localhost:5000/api/v1/executeUpdate', {
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -49,7 +49,7 @@ export default class CassandraAPICalls {
   }
 
   static makeConnection = (connection, resp) => {
-    return fetch('http://localhost:5000/api/makeConnection', {
+    return fetch('http://localhost:5000/api/v1/makeConnection', {
       method: 'post',
       headers: {
         Accept: 'application/json',

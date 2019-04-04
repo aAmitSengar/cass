@@ -24,10 +24,10 @@ export default class API {
   }
 
   apiEndPoint() {
-    return `http://localhost:5000/api`;
+    return `http://localhost:5000/api/v1`;
   }
   apiUploadEndPoint() {
-    return `http://localhost:5000/api`;
+    return `http://localhost:5000/api/v1`;
   }
   processResponse(res) {
     if (res && res.code && res.message && res.domain) {
