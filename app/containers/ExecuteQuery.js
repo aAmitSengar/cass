@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextField, Button, Paper, CircularProgress, Fab } from '@material-ui/core';
+import { TextField, Button, Paper, Fab } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { AddQueryStatement } from './../actions/actioncreater';
@@ -113,16 +113,6 @@ class ExecuteQuery extends Component {
 						Execute
 					</Fab>
 				</Paper>
-				{this.state.isProgress && (
-					<CircularProgress
-						size={60}
-						style={{
-							position: 'absolute',
-							top: '50%',
-							left: '50%'
-						}}
-					/>
-				)}
 			</div>
 		);
 	}

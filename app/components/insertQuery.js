@@ -16,7 +16,6 @@ import KeyspaceSelect from './../containers/KeyspaceSelect';
 import ColumnFamilySelect from './../containers/ColumnFamilySelect';
 import { setColumns } from './../actions/InsertActionCreater';
 import { arrayToObject } from './../common/Utilities';
-// import CassandraAPICalls from '../../../Service/CassandraAPICalls'
 import APITransport from './../api/apiTransport';
 import InsertQueryAPI from './../api/insertQueryAPI';
 import { showNotification } from './../actions/NotificationActionCreater';
@@ -54,7 +53,7 @@ class InsertQuery extends Component {
                 checked={
                   this.props.insertDataReducer[obj['column_name']] === undefined
                     ? true
-                    : this.props.insertDataReducer[obj['column_name']]
+                    : this.props.insertDataReducer[obj['column_name']]+''
                 }
                 onChange={event => {
                   this.props.setColumns(
@@ -140,6 +139,7 @@ class InsertQuery extends Component {
   handleClose = () => {};
 
   insertRecord = queryStatement => {
+    // need to change
     let resp;
     resp = CassandraAPICalls.fireUpdateQuery(queryStatement)
       .then(resp => {

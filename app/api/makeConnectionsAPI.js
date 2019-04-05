@@ -6,9 +6,10 @@ import C from './constants';
 // import CONFIGS from '../../configs/configs';
 
 export default class MakeConnectionsAPI extends API {
-  constructor(data, timeout = 2000) {
+  constructor(data, index, timeout = 2000) {
     super('post', timeout, true);
     this.type = C.MAKE_CONNECTION;
+    this.index = index;
     this.data = data;
     this.getConnResponse = {};
   }
@@ -27,14 +28,15 @@ export default class MakeConnectionsAPI extends API {
   }
 
   getPayload() {
-    return this.getConnResponse;
+    return {
+      index: this.index,
+      getConnResponse: this.getConnResponse
+    };
   }
 
   getBody() {
     return {
       connection: this.data
-      // 'level': this.acknowledge.email,
-      // '_id': this.acknowledge.id,
     };
   }
 

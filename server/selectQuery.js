@@ -30,7 +30,7 @@ var queryDatabase = (connection, query) => {
         })
         .on('error', function (err) {
           console.log('if(err) = ' + err);
-          return resolve({
+          return reject({
             statusMessage: err
           })
 

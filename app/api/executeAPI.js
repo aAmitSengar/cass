@@ -5,19 +5,19 @@ import API from './api';
 import C from './constants';
 // import CONFIGS from '../../configs/configs';
 
-export default class GetRecordsAPI extends API {
-  constructor(data, timeout = 2000) {
+export default class ExecuteAPI extends API {
+  constructor(data, type, timeout = 2000) {
     super('post', timeout, true);
-    this.type = C.IMPORT_CONNECTIONS;
+    this.type = C[`${type}`];
     this.data = data;
-    this.getConnResponse = {};
+    this.formDataReducer = {};
   }
 
   processResponse(res) {
     super.processResponse(res);
     if (res) {
       // res.index=this.data.
-      this.getConnResponse = res;
+      this.formDataReducer = res;
       return true;
     }
     return false;
@@ -28,7 +28,7 @@ export default class GetRecordsAPI extends API {
   }
 
   getPayload() {
-    return this.getConnResponse;
+    return this.formDataReducer;
   }
 
   getBody() {

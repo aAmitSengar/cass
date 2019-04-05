@@ -161,13 +161,13 @@ router.post('/makeConnection', (req, resp) => {
       resp.statusCode = 500;
       // resp.statusMessage = err;
       console.log('catch(err) = ' + err);
-      resp.json(err);
+      return resp.json(err);
     })
   } else {
     resp.statusCode = 500;
     // resp.statusMessage = {};
     console.log('no connection provided');
-    resp.json({});
+   return  resp.json({});
   }
 });
 
@@ -180,5 +180,5 @@ app.use('/api/v1', router);
 
 // START THE SERVER
 // =============================================================================
-// export default app;
-app.listen(5000);
+export default app;
+// app.listen(5000);

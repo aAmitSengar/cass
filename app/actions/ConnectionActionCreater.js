@@ -1,14 +1,5 @@
-// import CassandraAPICalls from "../service/CassandraAPICalls"
 import C from './../api/constants';
 
-// export function makeConnection(connection) {
-//     return function (dispatch) {
-//         CassandraAPICalls.makeConnection(connection).then(information => {
-//         }).catch(error => {
-//             throw (error)
-//         })
-//     }
-// }
 export function setConnectedDBIndex(index) {
   return {
     type: C.SET_CONNECTION_INDEX,

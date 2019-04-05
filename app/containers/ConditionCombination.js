@@ -11,11 +11,22 @@ import {
   IncreaseConditions,
   DecreaseConditions
 } from './../actions/actioncreater';
+import Fab from '@material-ui/core/Fab';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 import IconButton from '@material-ui/core/IconButton';
+
+
+const styles = theme => ({
+  fab: {
+    margin: theme.spacing.unit,
+  },
+  extendedIcon: {
+    marginRight: theme.spacing.unit,
+  },
+});
 
 class ConditionCombination extends Component {
   handleRemoveConditionClick = () => {
@@ -151,7 +162,7 @@ class ConditionCombination extends Component {
           aria-label="delete"
         >
           <RemoveIcon
-            style={{ height: '15px', width: '15px', color: 'white' }}
+            style={{ height: '15px', width: '15px' }}
           />
         </IconButton>
         &nbsp;&nbsp;
@@ -160,8 +171,10 @@ class ConditionCombination extends Component {
           onClick={this.props.IncreaseConditions}
           aria-label="add"
         >
-          <AddIcon style={{ height: '15px', width: '15px', color: 'white' }} />
+          <AddIcon style={{ height: '15px', width: '15px' }} />
         </IconButton>
+
+
       </div>
     );
   }

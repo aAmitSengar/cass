@@ -91,27 +91,30 @@ const Query = (queryReducer, conditionReducer) => {
       ) {
         switch (obj.filterBy['type']) {
           case 'boolean':
-          case 'integer': {
-            placeholder +=
+          case 'integer':
+            {
+              placeholder +=
               obj.filterBy['column_name'] +
               obj.operation +
               obj.condition +
               ' AND ';
-            break;
-          }
-          case 'text': {
-            placeholder +=
+              break;
+            }
+          case 'text':
+            {
+              placeholder +=
               obj.filterBy['column_name'] +
               obj.operation +
               "'" +
               obj.condition +
               "'" +
               ' AND ';
-            break;
-          }
-          default: {
-            break;
-          }
+              break;
+            }
+          default:
+            {
+              break;
+            }
         }
       }
     });
