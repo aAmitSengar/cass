@@ -2,7 +2,6 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
 import apistatus from './apiStatus';
-import counter from './counter';
 import connectionsReducer from './reducer-connections';
 import queryReducer from './reducer-query';
 import formDataReducer from './reducer-formdata';
@@ -25,7 +24,6 @@ export default function createRootReducer(history: History) {
   return combineReducers({
     router: connectRouter(history),
     apistatus: apistatus,
-    counter,
     connectionsReducer: connectionsReducer,
     queryReducer: queryReducer,
     formDataReducer: formDataReducer,

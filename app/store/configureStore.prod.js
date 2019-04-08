@@ -4,7 +4,6 @@ import thunk from 'redux-thunk';
 import { createHashHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import createRootReducer from '../reducers';
-// import type { counterStateType } from '../reducers/types';
 import initialState from './../data/appstate/initialstate';
 
 
