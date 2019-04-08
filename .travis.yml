@@ -84,7 +84,6 @@ script:
   # - yarn test-e2e
 deploy:
   provider: releases
-  api_key: cb3c1f71e1178224b8568a0a882ef15b728b1dad
   skip_cleanup: true
   on:
     tags: true
