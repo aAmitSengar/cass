@@ -1,42 +1,12 @@
+name: cass
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A database GUI # 79 char long summary
+description: |
+  This application provides GUI for cassandra database.
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
 
-  name: cass
-  version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-  summary: A database GUI # 79 char long summary
-  description: |
-    This application provides GUI for cassandra database.
-
-  grade: stable # must be 'stable' to release into candidate/stable channels
-  confinement: classic # use 'strict' once you have the right plugs and slots
-  parts:
-    slack:
-      plugin: dump
-      source: ./release/cass_0.17.1_amd64.deb
-      source-type: deb
-      after:
-        - desktop-gtk3
-      stage-packages:
-        - libasound2
-        - libgconf2-4
-        - libnotify4
-        - libnspr4
-        - libnss3
-        - libpcre3
-        - libpulse0
-        - libxss1
-        - libxtst6
-    electron-launch:
-      plugin: dump
-      source: release
-      prepare: |
-        chmod +x bin/electron-launch
-
-  apps:
-    amit:
-      command: bin/electron-launch $SNAP/usr/lib/cass/cass
-      desktop: usr/share/applications/cass.desktop
-      # Correct the TMPDIR path for Chromium Framework/Electron to ensure
-      # libappindicator has readable resources.
-      environment:
-        TMPDIR: $XDG_RUNTIME_DIR
-
-
+parts:
+  cass:
+    # See 'snapcraft plugins'
+    plugin: nil

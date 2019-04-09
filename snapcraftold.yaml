@@ -1,0 +1,90 @@
+name: cass
+version: 0.1
+version-script: cat $SNAPCRAFT_STAGE/version
+summary:  A database GUI.
+description: |
+  This application provides GUI for cassandra database
+grade: stable
+confinement: classic
+
+architectures:
+  - build-on: amd64
+  - build-on: i386
+
+parts:
+  gnome:
+    plugin: nil
+    build-packages:
+      - software-properties-common
+    override-pull: |
+      add-apt-repository -y ppa:ubuntu-desktop/gnome-3-26
+      apt -y update
+      apt -y upgrade
+  vscode:
+    after:
+      - gnome
+    plugin: dump
+    source:
+      # Visual Studio Code is only available for i386 (x86) and amd64 (x86_64),
+      # so fail the build on other architectures.
+      - on amd64: https://github.com/aAmitSengar/cassandra-UI/releases/download/v0.17.1/ui-for-cassandra-db_0.17.1_amd64.deb
+      - on i386: https://go.microsoft.com/fwlink/?LinkID=760680
+    source-type: deb
+    override-build: |
+      ARCHITECTURE=$(dpkg --print-architecture)
+      if [ "${ARCHITECTURE}" = "amd64" ]; then
+        DEB_API="https://github.com/aAmitSengar/cassandra-UI/releases/download/v0.17.1/ui-for-cassandra-db_0.17.1_amd64.deb"
+      else
+        echo "ERROR! Visual Studio Code only produces debs for amd64 and i386. Failing the build here."
+        exit 1
+      fi
+      DEB_URL=$(curl -w "%{url_effective}\n" -I -L -s -S "${DEB_API}" -o /dev/null)
+      VERSION=$(echo "${DEB_URL}" | cut -d'_' -f2)
+      echo $VERSION > $SNAPCRAFT_STAGE/version
+      # Correct path to icon.
+      sed -i 's|Icon=com\.visualstudio\.code|Icon=/usr/share/pixmaps/com\.visualstudio\.code\.png|g' usr/share/applications/code.desktop
+      sed -i 's|Icon=com\.visualstudio\.code|Icon=/usr/share/pixmaps/com\.visualstudio\.code\.png|g' usr/share/applications/code-url-handler.desktop
+      snapcraftctl build
+    build-packages:
+      - curl
+      - dpkg
+      - sed
+    stage-packages:
+      - fcitx-frontend-gtk3
+      - gvfs-libs
+      - libasound2
+      - libgconf-2-4
+      - libglib2.0-bin
+      - libgnome-keyring0
+      - libgtk-3-0
+      - libnotify4
+      - libnspr4
+      - libnss3
+      - libpcre3
+      - libpulse0
+      - libsecret-1-0
+      - libxss1
+      - libxtst6
+      - yad
+      - zlib1g
+    prime:
+      - -usr/share/doc
+      - -usr/share/fonts
+      - -usr/share/icons
+      - -usr/share/lintian
+      - -usr/share/man
+
+  wrapper:
+    after:
+      - vscode
+    plugin: dump
+    source: files/
+
+apps:
+  vscode:
+    command: bin/wrapper $SNAP/usr/share/code/bin/code
+    desktop: usr/share/applications/code.desktop
+    environment:
+      # Fallback to XWayland if running in a Wayland session.
+      DISABLE_WAYLAND: 1
+      GSETTINGS_SCHEMA_DIR: $SNAP/usr/share/glib-2.0/schemas
