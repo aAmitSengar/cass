@@ -1,8 +1,8 @@
 directories:
   output: release
   buildResources: resources
-productName: cass
-name: Cass
+productName: Cass
+name: cass
 appId: org.develar.cassandraDB
 copyright: 'Copyright © 2019 ${author}'
 files:
