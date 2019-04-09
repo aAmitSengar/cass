@@ -2,6 +2,7 @@ directories:
   output: release
   buildResources: resources
 productName: Cass
+name: Cass
 appId: org.develar.cassandraDB
 copyright: 'Copyright © 2019 ${author}'
 files:
