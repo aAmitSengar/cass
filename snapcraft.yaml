@@ -26,7 +26,7 @@
         - libxtst6
     electron-launch:
       plugin: dump
-      source: ./release/
+      source: release
       prepare: |
         chmod +x bin/electron-launch
 
