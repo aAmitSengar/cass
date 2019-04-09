@@ -93,7 +93,16 @@
 				"Icon": "./resources/icons/32x32.png",
 				"Comment": "Owner Free File System",
 				"Categories": "Network"
-			}
+      },
+      "extraFiles": [
+        {
+          "from": "resources/${os}/drivers",
+          "to": "resources",
+          "filter": [
+            "**/*"
+          ]
+        }
+      ]
 		},
 		"directories": {
 			"buildResources": "resources",
