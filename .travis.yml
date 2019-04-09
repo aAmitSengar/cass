@@ -53,13 +53,6 @@ before_install:
 
 install:
   - yarn --ignore-engines
-  - sudo apt update
-  - sudo apt install -y snapd
-  - sudo snap install lxd --channel 3.0/stable
-  - sudo snap install snapcraft --candidate --classic
-  - sudo /snap/bin/lxd waitready
-  - sudo /snap/bin/lxd init --auto
-  - mkdir -p "$TRAVIS_BUILD_DIR/snaps-cache"
   # On Linux, initialize "virtual display". See before_script
   - |
     if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -85,21 +78,21 @@ script:
   - yarn package-ci
   # - yarn lint
   - yarn flow
-  - export PATH=/snap/bin:$PATH
-  - sudo snapcraft cleanbuild
-  - sudo cp *.snap "$(echo "$TRAVIS_REPO_SLUG" | sed -e 's|.*/\(.*\)|\1|')-pr$TRAVIS_PULL_REQUEST.snap"
+  # - export PATH=/snap/bin:$PATH
+  # - sudo snapcraft cleanbuild
+  # - sudo cp *.snap "$(echo "$TRAVIS_REPO_SLUG" | sed -e 's|.*/\(.*\)|\1|')-pr$TRAVIS_PULL_REQUEST.snap"
   # HACK: Temporarily ignore `yarn test` on linux
   # - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then yarn test; fi
   # - yarn build-e2e
   # - yarn test-e2e
 
-after_success:
-  - sudo snap install transfer
-  - timeout 180 sudo /snap/bin/transfer "$(echo "$TRAVIS_REPO_SLUG" | sed -e 's|.*/\(.*\)|\1|')-pr$TRAVIS_PULL_REQUEST.snap"
-after_failure:
-  - sudo journalctl -u snapd
-  - sudo snap install http
-  - /snap/bin/http https://api.snapcraft.io/v2/snaps/info/core architecture==amd64 Snap-Device-Series:16
+# after_success:
+#   - sudo snap install transfer
+#   - timeout 180 sudo /snap/bin/transfer "$(echo "$TRAVIS_REPO_SLUG" | sed -e 's|.*/\(.*\)|\1|')-pr$TRAVIS_PULL_REQUEST.snap"
+# after_failure:
+#   - sudo journalctl -u snapd
+#   - sudo snap install http
+#   - /snap/bin/http https://api.snapcraft.io/v2/snaps/info/core architecture==amd64 Snap-Device-Series:16
 
 deploy:
   provider: releases
