@@ -5,6 +5,7 @@
 	"description": "This application is helpful for cassandra database developers.",
 	"scripts": {
 		"build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
+		"deb64": "electron-installer-debian --src release/linux-unpacked/ --dest release/installers/ --arch amd64",
 		"build-dll": "cross-env NODE_ENV=development webpack --config ./configs/webpack.config.renderer.dev.dll.babel.js --colors",
 		"build-main": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.main.prod.babel.js --colors",
 		"build-renderer": "cross-env NODE_ENV=production webpack --config ./configs/webpack.config.renderer.prod.babel.js --colors",
@@ -15,6 +16,7 @@
 		"lint-fix": "yarn --silent lint --fix; exit 0",
 		"lint-styles": "stylelint --ignore-path .eslintignore '**/*.*(css|scss)' --syntax scss",
 		"lint-styles-fix": "yarn --silent lint-styles --fix; exit 0",
+		"p": "build --linux snap",
 		"package": "yarn build && electron-builder build --publish never",
 		"package-all": "yarn build && electron-builder build -mwl",
 		"package-ci": "yarn postinstall && yarn build && electron-builder --publish never",
@@ -47,16 +49,25 @@
 			"prettier --ignore-path .eslintignore --single-quote --write",
 			"git add"
 		],
-		"*.{yml,md}": [ "prettier --ignore-path .eslintignore --single-quote --write", "git add" ]
+		"*.{yml,md}": [
+			"prettier --ignore-path .eslintignore --single-quote --write",
+			"git add"
+		]
 	},
 	"main": "./app/main.prod.js",
 	"build": {
 		"productName": "Cass",
 		"appId": "org.develar.cassandraDB",
 		"copyright": "Copyright © 2019 ${author}",
-		"files": [ "app/dist/", "app/app.html", "app/main.prod.js", "app/main.prod.js.map", "package.json" ],
+		"files": [
+			"app/dist/",
+			"app/app.html",
+			"app/main.prod.js",
+			"app/main.prod.js.map",
+			"package.json"
+		],
 		"dmg": {
-      "title" : "${productName} ${version}",
+			"title": "${productName} ${version}",
 			"contents": [
 				{
 					"x": 130,
@@ -78,11 +89,17 @@
 			"icon": "resources/icon.icns"
 		},
 		"win": {
-			"target": [ "nsis", "msi" ],
+			"target": [
+				"nsis",
+				"msi"
+			],
 			"icon": "resources/icon.ico"
 		},
 		"linux": {
-			"target": [ "zip", "deb" ],
+			"target": [
+				"zip",
+				"deb"
+			],
 			"category": "Development",
 			"icon": "./resources/icon.icns",
 			"executableName": "cass",
@@ -93,16 +110,16 @@
 				"Icon": "./resources/icons/32x32.png",
 				"Comment": "Owner Free File System",
 				"Categories": "Network"
-      },
-      "extraFiles": [
-        {
-          "from": "resources/${os}/drivers",
-          "to": "resources",
-          "filter": [
-            "**/*"
-          ]
-        }
-      ]
+			},
+			"extraFiles": [
+				{
+					"from": "resources/${os}/drivers",
+					"to": "resources",
+					"filter": [
+						"**/*"
+					]
+				}
+			]
 		},
 		"directories": {
 			"buildResources": "resources",
@@ -129,7 +146,17 @@
 	"bugs": {
 		"url": "https://github.com/aAmitSengar/cassandra-UI/issues"
 	},
-	"keywords": [ "electron", "boilerplate", "react", "redux", "flow", "sass", "webpack", "hot", "reload" ],
+	"keywords": [
+		"electron",
+		"boilerplate",
+		"react",
+		"redux",
+		"flow",
+		"sass",
+		"webpack",
+		"hot",
+		"reload"
+	],
 	"homepage": "https://github.com/aAmitSengar/cassandra-UI/",
 	"jest": {
 		"testURL": "http://localhost/",
@@ -137,11 +164,17 @@
 			"\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/internals/mocks/fileMock.js",
 			"\\.(css|less|sass|scss)$": "identity-obj-proxy"
 		},
-		"moduleFileExtensions": [ "js", "jsx", "json" ],
+		"moduleFileExtensions": [
+			"js",
+			"jsx",
+			"json"
+		],
 		"transform": {
 			"^.+\\.jsx?$": "babel-jest"
 		},
-		"setupFiles": [ "./internals/scripts/CheckBuiltsExist.js" ]
+		"setupFiles": [
+			"./internals/scripts/CheckBuiltsExist.js"
+		]
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.6",
@@ -183,6 +216,9 @@
 		"electron": "^3.0.10",
 		"electron-builder": "^20.39.0",
 		"electron-devtools-installer": "^2.2.4",
+		"electron-installer-debian": "^1.1.1",
+		"electron-installer-snap": "^3.1.1",
+		"electron-packager": "^13.1.1",
 		"enzyme": "^3.7.0",
 		"enzyme-adapter-react-16": "^1.7.0",
 		"enzyme-to-json": "^3.3.4",

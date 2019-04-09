@@ -31,10 +31,12 @@
         chmod +x bin/electron-launch
 
   apps:
-    myApp:
+    amit:
       command: bin/electron-launch $SNAP/usr/lib/cass/cass
       desktop: usr/share/applications/cass.desktop
       # Correct the TMPDIR path for Chromium Framework/Electron to ensure
       # libappindicator has readable resources.
       environment:
         TMPDIR: $XDG_RUNTIME_DIR
+
+
