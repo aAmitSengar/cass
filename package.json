@@ -1,6 +1,6 @@
 {
 	"name": "cass",
-	"productName": "Cass DB",
+	"productName": "CassDatabase",
 	"version": "0.17.1",
 	"description": "This application is helpful for cassandra database developers.",
 	"scripts": {
@@ -32,7 +32,8 @@
 		"start-renderer-dev": "cross-env NODE_ENV=development webpack-dev-server --config configs/webpack.config.renderer.dev.babel.js",
 		"test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 jest",
 		"test-all": "yarn lint && yarn flow && yarn build && yarn test",
-		"test-watch": "yarn test --watch"
+		"test-watch": "yarn test --watch",
+    "release":"snapcraft push --release=stable ./release/cass_0.17.1_amd64.snap"
 	},
 	"lint-staged": {
 		"*.{js,jsx}": [
@@ -134,7 +135,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/aAmitSengar/cassandra-UI.git"
+		"url": "git+https://github.com/aAmitSengar/cass.git"
 	},
 	"author": {
 		"name": "Amit Sengar",
@@ -144,7 +145,7 @@
 	"contributors": [],
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/aAmitSengar/cassandra-UI/issues"
+		"url": "https://github.com/aAmitSengar/cass/issues"
 	},
 	"keywords": [
 		"electron",
@@ -157,7 +158,7 @@
 		"hot",
 		"reload"
 	],
-	"homepage": "https://github.com/aAmitSengar/cassandra-UI/",
+	"homepage": "https://github.com/aAmitSengar/cass/",
 	"jest": {
 		"testURL": "http://localhost/",
 		"moduleNameMapper": {

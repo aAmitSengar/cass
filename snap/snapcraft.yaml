@@ -1,0 +1,125 @@
+name: cass-databse-gui
+version: 0.17.1
+# version-script: cat $SNAPCRAFT_STAGE/version
+summary:  A database GUI.
+description: |
+  This application provides GUI for cassandra database
+grade: devel
+confinement: strict
+
+
+# architectures:
+#   - build-on: amd64
+#     run-on: amd64
+
+parts:
+  electron-app:
+    source: app/
+    plugin: nodejs
+    node-package-manager: yarn
+    node-engine: 10.15.3
+    stage-packages:
+      - libnotify4
+      - libappindicator1
+      - libxtst6
+      - libnss3
+      - libxss1
+      - fontconfig-config
+      - gconf2
+      - libasound2
+      - pulseaudio
+    after:
+      - desktop-gtk3
+    override-build: |
+      # node_modules/.bin/electron-builder
+      # mkdir $SNAPCRAFT_PART_INSTALL/app
+      # mv release/linux-unpacked/* $SNAPCRAFT_PART_INSTALL/app
+      case $SNAPCRAFT_ARCH_TRIPLET in
+          "i386-linux-gnu") ARCH="ia32";;
+          "x86_64-linux-gnu") ARCH="x64";;
+          "arm-linux-gnueabihf") ARCH="armv7l";;
+          "aarch64-linux-gnu") ARCH="arm64";;
+          *) echo "ERROR: electron does not support the '$SNAPCRAFT_ARCH_TRIPLET' architecture" && exit 1;;
+        esac
+        # npm install electron-packager &&
+          ./node_modules/.bin/electron-packager . --overwrite --platform=linux --arch=$ARCH --output=release-build --prune=true
+         echo $SNAP
+         mkdir $SNAPCRAFT_PART_INSTALL/app
+         
+          cp -v -R ./CassDatabase-linux-$ARCH/* $SNAPCRAFT_PART_INSTALL/app
+
+    # prime:
+    #   - -node_modules
+
+
+apps:
+  cass-databse-gui:
+    command: desktop-launch "$SNAP/app/CassDatabase"
+    plugs:
+      - home
+      - x11
+      - browser-support
+      - network
+      - gsettings
+      - opengl
+      - unity7
+
+
+# apps:
+#   cass:
+#     command: env TMPDIR=$XDG_RUNTIME_DIR desktop-launch $SNAP/app/ubuntu-mate-launchpad
+#     plugs:
+#     - browser-sandbox
+#     - network
+#     - network-bind
+#     - opengl
+#     - pulseaudio
+#     - wayland
+#     - x11
+
+plugs:
+  browser-sandbox:
+    interface: browser-support
+    allow-sandbox: true
+
+# parts:
+#   electron-app:
+#     plugin: nodejs
+#     source: ./db
+#     after: [desktop-gtk2]
+#     override-build: |
+#         case $SNAPCRAFT_ARCH_TRIPLET in
+#           "i386-linux-gnu") ARCH="ia32";;
+#           "x86_64-linux-gnu") ARCH="x64";;
+#           "arm-linux-gnueabihf") ARCH="armv7l";;
+#           "aarch64-linux-gnu") ARCH="arm64";;
+#           *) echo "ERROR: electron does not support the '$SNAPCRAFT_ARCH_TRIPLET' architecture" && exit 1;;
+#         esac
+#         npm install electron-packager &&
+#         ./node_modules/.bin/electron-packager . --overwrite --platform=linux --arch=$ARCH --output=release-build --prune=true
+#         cp -v -R ./cass-linux-$ARCH $SNAPCRAFT_PART_INSTALL/server
+#     stage-packages:
+#     - libasound2
+#     - libgconf-2-4
+#     - libnss3
+#     - libxss1
+#     - libxtst6
+
+
+
+
+
+# parts:
+#   cass:
+#     source: .
+#     plugin: nodejs
+
+# apps:
+#   cass:
+#     command: bin/wrapper $SNAP/usr/lib/cass/cass
+#     desktop: usr/share/applications/ui-for-cassandra-db.desktop
+#     environment:
+#       # Fallback to XWayland if running in a Wayland session.
+#       DISABLE_WAYLAND: 1
+#       # GSETTINGS_SCHEMA_DIR: $SNAP/usr/share/glib-2.0/schemas
+#       TMPDIR: $XDG_RUNTIME_DIR
