@@ -1,0 +1,40 @@
+name: cass
+version: 0.1
+version-script: cat $SNAPCRAFT_STAGE/version
+summary:  A database GUI.
+description: |
+  This application provides GUI for cassandra database
+grade: stable
+confinement: classic
+parts:
+  cass:
+    plugin: dump
+    source: https://github.com/aAmitSengar/cassandra-UI/releases/download/v0.17.1/ui-for-cassandra-db_0.17.1_amd64.deb
+    source-type: deb
+    after:
+      - desktop-gtk3
+    stage-packages:
+      - libasound2
+      - libgconf2-4
+      - libnotify4
+      - libnspr4
+      - libnss3
+      - libpcre3
+      - libpulse0
+      - libxss1
+      - libxtst6
+  electron-launch:
+    plugin: dump
+    source: files/
+    prepare: |
+      chmod +x bin/electron-launch
+
+apps:
+  cass:
+    command: bin/wrapper $SNAP/usr/lib/cass/cass
+    desktop: usr/share/applications/ui-for-cassandra-db.desktop
+    environment:
+      # Fallback to XWayland if running in a Wayland session.
+      DISABLE_WAYLAND: 1
+      # GSETTINGS_SCHEMA_DIR: $SNAP/usr/share/glib-2.0/schemas
+      TMPDIR: $XDG_RUNTIME_DIR
