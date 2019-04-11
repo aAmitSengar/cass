@@ -16,10 +16,10 @@ cache:
     - $HOME/.cache/electron-builder
 
 
-install: yarn --pure-lockfile
+install: yarn
 
 script:
-  - yarn test -u
+  - yarn audit
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 deploy:
