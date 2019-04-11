@@ -1,6 +1,9 @@
 This project provides a GUI for cassendra developers 
 
-[![Snap Status](https://build.snapcraft.io/badge/aAmitSengar/cass.svg)](https://build.snapcraft.io/user/aAmitSengar/cass)
+[![cass](https://snapcraft.io/cass/badge.svg)](https://snapcraft.io/cass)
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/cass)
+
 
 # installation
 ```blash
