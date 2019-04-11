@@ -19,7 +19,7 @@ cache:
 install: yarn
 
 script:
-  - yarn audit
+  # - yarn audit
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 deploy:
