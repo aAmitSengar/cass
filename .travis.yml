@@ -20,7 +20,7 @@ install: yarn
 
 script:
   # - yarn audit
-  - yarn build
+  # - yarn build
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 before_deploy:
@@ -38,8 +38,8 @@ deploy:
       - release/*.dmg
       - release/*.AppImage
     skip_cleanup: true
-  #   on:
-  #     tags: true
+    on:
+      tags: true
   # - provider: snap
   #   snap: release/*.snap
   #   channel: stable
