@@ -30,12 +30,12 @@ deploy:
       - dist/*.dmg
       - dist/*.AppImage
     skip_cleanup: true
-    on:
-      tags: true
-  - provider: snap
-    snap: dist/*.snap
-    channel: stable
-    skip_cleanup: true
-    on:
-      tags: true
-      condition: $TRAVIS_OS_NAME = linux
+  #   on:
+  #     tags: true
+  # - provider: snap
+  #   snap: dist/*.snap
+  #   channel: stable
+  #   skip_cleanup: true
+  #   on:
+  #     tags: true
+  #     condition: $TRAVIS_OS_NAME = linux
