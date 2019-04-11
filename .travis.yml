@@ -20,6 +20,7 @@ install: yarn
 
 script:
   # - yarn audit
+  - yarn build
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 deploy:
@@ -27,13 +28,13 @@ deploy:
     api-key: $GH_TOKEN
     file_glob: true
     file:
-      - dist/*.dmg
-      - dist/*.AppImage
+      - release/*.dmg
+      - release/*.AppImage
     skip_cleanup: true
   #   on:
   #     tags: true
   # - provider: snap
-  #   snap: dist/*.snap
+  #   snap: release/*.snap
   #   channel: stable
   #   skip_cleanup: true
   #   on:
