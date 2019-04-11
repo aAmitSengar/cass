@@ -27,6 +27,7 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
+
 # OSX
 .DS_Store
 
@@ -36,6 +37,7 @@ flow-typed/npm/*
 
 # App packaged
 release
+stage
 app/main.prod.js
 app/main.prod.js.map
 app/renderer.prod.js
