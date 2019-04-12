@@ -25,8 +25,9 @@ script:
 
 before_deploy:
   # Set up git user name and tag this commit
-  - ls 
-  - echo "deploying to GitHub releases"
+ - ls 
+ - echo "deploying to GitHub releases"
+ 
   if ! [[ $TRAVIS_TAG ]]; then
       export TRAVIS_TAG="1.$TRAVIS_BUILD_NUMBER" &&
     git config --local user.name "$USER_NAME" &&
