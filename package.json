@@ -1,7 +1,7 @@
 {
   "name": "cass",
   "productName": "CassDatabase",
-  "version": "0.17.1",
+  "version": "v1.0.6",
   "description": "This application is helpful for cassandra database developers.",
   "scripts": {
   "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
