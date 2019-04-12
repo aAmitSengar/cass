@@ -20,7 +20,9 @@ install: yarn
 
 script:
   # - yarn audit
-  - yarn build
+  #- yarn build
+  - yarn p
+  - yarn package-all
   #- if [ "$TRAVIS_TAG" ]; then yarn build; fi
 after_success:
   - ls
