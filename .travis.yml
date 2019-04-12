@@ -43,8 +43,7 @@ deploy:
     api-key: $GH_TOKEN
     #file_glob: true
     file:
-      - release/*.dmg
-      - release/*.AppImage
+      - release/*
     skip_cleanup: true
     on:
       tags: true
