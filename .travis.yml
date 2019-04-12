@@ -27,7 +27,7 @@ after_success:
 
 before_deploy:
   # Set up git user name and tag this commit
- - ls 
+ - ls release/*
  - echo "deploying to GitHub releases"
  
   if ! [[ $TRAVIS_TAG ]]; then
@@ -43,7 +43,9 @@ deploy:
     api-key: $GH_TOKEN
     #file_glob: true
     file:
-      - release/*
+      - release/*.snap
+      - release/*.zip
+      - release/*.deb
     skip_cleanup: true
     on:
       tags: true
