@@ -31,11 +31,13 @@ before_deploy:
     git config --local user.email "$USER_EMAIL" &&
     git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT";
   fi
+  - ls *.deb
+  - echo "deploying to GitHub releases"
 
 deploy:
   - provider: releases
     api-key: $GH_TOKEN
-    file_glob: true
+    #file_glob: true
     file:
       - release/*.dmg
       - release/*.AppImage
