@@ -19,7 +19,7 @@ script:
   - yarn package-linux
   - ls
   - yarn p
-  -ls
+  - ls
   #- if [ "$TRAVIS_TAG" ]; then yarn build; fi
 after_success:
   - ls
