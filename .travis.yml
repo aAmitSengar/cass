@@ -2,11 +2,6 @@ language: node_js
 node_js:
   - "11"
 
-os:
-  - linux
-  - osx
-#  - windows # TODO: Enable Once Widevine Package Supports Windows
-
 cache:
   yarn: true
   directories:
@@ -21,8 +16,10 @@ install: yarn
 script:
   # - yarn audit
   #- yarn build
+  - yarn package-linux
+  - ls
   - yarn p
-  - yarn package-all
+  -ls
   #- if [ "$TRAVIS_TAG" ]; then yarn build; fi
 after_success:
   - ls
