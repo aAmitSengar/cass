@@ -24,6 +24,8 @@ script:
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 before_deploy:
+  - ls *.deb
+  - echo "deploying to GitHub releases"
       # Set up git user name and tag this commit
   if ! [[ $TRAVIS_TAG ]]; then
     export TRAVIS_TAG="1.$TRAVIS_BUILD_NUMBER" &&
@@ -31,8 +33,7 @@ before_deploy:
     git config --local user.email "$USER_EMAIL" &&
     git tag "$TRAVIS_TAG" "$TRAVIS_COMMIT";
   fi
-  - ls *.deb
-  - echo "deploying to GitHub releases"
+  
 
 deploy:
   - provider: releases
