@@ -24,7 +24,7 @@ script:
   - if [ "$TRAVIS_TAG" ]; then yarn build; fi
 
 before_deploy:
-  - ls *.deb
+  - ls 
   - echo "deploying to GitHub releases"
       # Set up git user name and tag this commit
   if ! [[ $TRAVIS_TAG ]]; then
