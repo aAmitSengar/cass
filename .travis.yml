@@ -42,10 +42,7 @@ deploy:
   - provider: releases
     api-key: $GH_TOKEN
     file_glob: true
-    file:
-      - release/cass_$TRAVIS_TAG_amd64.snap
-      - release/cass_$TRAVIS_TAG.zip
-      - release/cass_$TRAVIS_TAG_amd64.deb
+    file: release/cass_$TRAVIS_TAG.zip
     skip_cleanup: true
     on:
       tags: true
