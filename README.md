@@ -12,3 +12,7 @@ git clone https://github.com/aAmitSengar/cassandra-UI.git
 cd cassandra-UI
 yarn or npm i
 ```
+Images
+![Cass](resources/cass.png?raw=true "Title")
+
+
